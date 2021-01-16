@@ -20,8 +20,12 @@ $labels = $reader->fetchColumn('class');
 $samples = iterator_to_array($samples);
 $labels = iterator_to_array($labels);
 
-$testingSamples = array_splice($samples, 0, 0.2 * count($samples));
-$testingLabels = array_splice($samples, 0, 0.2 * count($labels));
+foreach ($samples as &$sample) {
+    $sample = array_map('floatval', $sample);
+}
+
+$testingSamples = array_splice($samples, 0, (int) round(0.2 * count($samples)));
+$testingLabels = array_splice($labels, 0, (int) round(0.2 * count($labels)));
 
 $estimator = new KNearestNeighbors(5);
 
