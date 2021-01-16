@@ -7,7 +7,6 @@ use Rubix\ML\Extractors\CSV;
 use Rubix\ML\Classifiers\KDNeighbors;
 use Rubix\ML\CrossValidation\Metrics\Accuracy;
 use Rubix\ML\Transformers\NumericStringConverter;
-use League\Csv\Reader;
 
 $dataset = Labeled::fromIterator(new CSV('banknote.csv', true))
     ->apply(new NumericStringConverter());
